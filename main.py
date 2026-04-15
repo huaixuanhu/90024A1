@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compatibility wrapper for the local serial main program."""
+"""Main local serial entry for COMP90024 Assignment 1."""
 
 from comp90024_a1.cli import main
 

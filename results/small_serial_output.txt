@@ -2,7 +2,7 @@
 Run label: small
 Mastodon input: mastodon-small.ndjson
 BlueSky input: bluesky-small.ndjson
-Elapsed seconds: 0.023445
+Elapsed seconds: 0.021629
 Language table mode: full
 ########################################################################
 

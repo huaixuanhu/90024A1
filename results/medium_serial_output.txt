@@ -2,7 +2,7 @@
 Run label: medium
 Mastodon input: mastodon-medium.ndjson
 BlueSky input: bluesky-medium.ndjson
-Elapsed seconds: 0.180989
+Elapsed seconds: 0.184851
 Language table mode: full
 ########################################################################
 

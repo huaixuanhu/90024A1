@@ -2,6 +2,15 @@
 
 This folder is set up for local data exploration and a serial baseline before moving the final program to SPARTAN.
 
+## Project structure
+
+- `main.py`: the current assignment-style serial single-program entry
+- `comp90024_a1/analysis.py`: shared language extraction and counting logic
+- `comp90024_a1/reporting.py`: terminal output and JSON summary helpers
+- `inspect_data.py`: local inspection helper for exploratory work
+- `serial_language_counter.py`: compatibility wrapper that calls `main.py`
+- `results/`: saved local outputs for the `small` and `medium` runs
+
 ## 1. Activate the virtual environment
 
 ```bash
@@ -41,7 +50,7 @@ python inspect_data.py --limit 200 mastodon-small.ndjson bluesky-small.ndjson
 Run one Mastodon file and one BlueSky file in a single program invocation:
 
 ```bash
-python serial_language_counter.py \
+python main.py \
   --label small \
   --mastodon mastodon-small.ndjson \
   --bluesky bluesky-small.ndjson \
@@ -51,12 +60,14 @@ python serial_language_counter.py \
 Run the medium files:
 
 ```bash
-python serial_language_counter.py \
+python main.py \
   --label medium \
   --mastodon mastodon-medium.ndjson \
   --bluesky bluesky-medium.ndjson \
   --output-json results/medium_serial_summary.json
 ```
+
+If you already used the old command, `serial_language_counter.py` still works as a wrapper.
 
 Current local runs already saved these files:
 

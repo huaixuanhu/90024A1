@@ -1,6 +1,6 @@
 {
   "label": "medium",
-  "elapsed_seconds": 0.180989,
+  "elapsed_seconds": 0.184851,
   "inputs": {
     "mastodon": "mastodon-medium.ndjson",
     "bluesky": "bluesky-medium.ndjson"

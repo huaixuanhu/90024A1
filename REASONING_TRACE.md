@@ -50,6 +50,14 @@ This file keeps a short human-agent decision log for the COMP90024 assignment wo
 - Evidence: The script now runs one Mastodon file and one BlueSky file together, measures elapsed time, prints both result tables, and saves JSON summaries for `small` and `medium`.
 - Next Step: Reuse this serial structure when moving toward the final assignment program and later MPI adaptation.
 
+## Entry 007
+
+- Date: 2026-04-15
+- Decision: Refactor the serial baseline into a clearer final-style structure with `main.py` plus a shared `comp90024_a1` package.
+- Reason: The final submission will be easier to explain, maintain, and later extend to MPI if the counting logic, reporting logic, and CLI entry are already separated.
+- Evidence: The project now has `main.py` as the formal serial entry, `comp90024_a1/analysis.py` for counting, and `comp90024_a1/reporting.py` for output and JSON serialization.
+- Next Step: Keep using `main.py` as the reference serial program before adding parallel execution.
+
 ## Template
 
 - Date:
