@@ -1,0 +1,146 @@
+{
+  "label": "medium_serial_v1",
+  "run_metadata": {
+    "entry_script": "main.py",
+    "command": "/Users/anoria/Documents/python_coding/unimelbpy/subjects/90024codingpart/90024A1/.venv/bin/python main.py --label medium_serial_v1 --mastodon mastodon-medium.ndjson --bluesky bluesky-medium.ndjson --output-dir results",
+    "cwd": "/Users/anoria/Documents/python_coding/unimelbpy/subjects/90024codingpart/90024A1",
+    "run_started_at": "2026-04-16T01:25:59.603+10:00",
+    "run_finished_at": "2026-04-16T01:25:59.777+10:00",
+    "elapsed_seconds": 0.174313,
+    "top_n_display": null,
+    "mode": "serial",
+    "nodes": 1,
+    "processes": 1,
+    "cpus_per_process": 1,
+    "python_version": "3.14.2",
+    "python_executable": "/Users/anoria/Documents/python_coding/unimelbpy/subjects/90024codingpart/90024A1/.venv/bin/python",
+    "hostname": "MacBook-Max.local",
+    "platform": "macOS-26.3-arm64-arm-64bit-Mach-O"
+  },
+  "elapsed_seconds": 0.174313,
+  "inputs": {
+    "mastodon": "mastodon-medium.ndjson",
+    "bluesky": "bluesky-medium.ndjson",
+    "mastodon_size_bytes": 38281445,
+    "bluesky_size_bytes": 18097777
+  },
+  "results": {
+    "mastodon": {
+      "path": "mastodon-medium.ndjson",
+      "dataset_type": "mastodon",
+      "total_lines": 9738,
+      "parsed_json_lines": 9738,
+      "skipped_records": 447,
+      "counted_records": 9291,
+      "counted_language_assignments": 9291,
+      "invalid_json": 0,
+      "language_path_hits": {
+        "doc.language": 9738
+      },
+      "language_value_types": {
+        "None": 447,
+        "str": 9291
+      },
+      "skip_reasons": {
+        "missing_value": 447
+      },
+      "language_counts": {
+        "en": 8201,
+        "es": 289,
+        "de": 223,
+        "zh": 207,
+        "ja": 81,
+        "zh-cn": 50,
+        "pt": 48,
+        "fr": 45,
+        "nl": 36,
+        "ru": 22,
+        "ca": 22,
+        "sv": 18,
+        "it": 16,
+        "zh-tw": 5,
+        "ar": 4,
+        "fi": 3,
+        "uk": 2,
+        "tr": 2,
+        "nb": 2,
+        "lt": 2,
+        "is": 2,
+        "eo": 2,
+        "vi": 2,
+        "da": 1,
+        "el": 1,
+        "in": 1,
+        "qme": 1,
+        "af": 1,
+        "gl": 1,
+        "id": 1
+      },
+      "suspicious_codes": {
+        "zh-cn": 50,
+        "zh-tw": 5
+      }
+    },
+    "bluesky": {
+      "path": "bluesky-medium.ndjson",
+      "dataset_type": "bluesky",
+      "total_lines": 10886,
+      "parsed_json_lines": 10886,
+      "skipped_records": 105,
+      "counted_records": 10781,
+      "counted_language_assignments": 10826,
+      "invalid_json": 0,
+      "language_path_hits": {
+        "record.langs": 10786
+      },
+      "language_value_types": {
+        "list": 10786,
+        "None": 100
+      },
+      "skip_reasons": {
+        "missing_value": 100,
+        "empty_list": 5
+      },
+      "language_counts": {
+        "en": 10280,
+        "de": 179,
+        "ja": 114,
+        "fr": 64,
+        "es": 50,
+        "pt": 43,
+        "pl": 21,
+        "fi": 17,
+        "sv": 9,
+        "zh": 8,
+        "it": 6,
+        "nl": 6,
+        "is": 5,
+        "ak": 4,
+        "el": 3,
+        "ko": 2,
+        "uk": 2,
+        "ca": 1,
+        "ar": 1,
+        "hy": 1,
+        "da": 1,
+        "sc": 1,
+        "sr": 1,
+        "eo": 1,
+        "ru": 1,
+        "en-us": 1,
+        "id": 1,
+        "gv": 1,
+        "av": 1,
+        "ay": 1
+      },
+      "suspicious_codes": {
+        "en-us": 1
+      }
+    }
+  },
+  "artifacts": {
+    "text_output_path": "results/medium_serial_v1_output.txt",
+    "summary_json_path": "results/medium_serial_v1_summary.json",
+    "run_log_path": "results/run_log.jsonl"
+  }
+}

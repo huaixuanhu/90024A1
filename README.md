@@ -9,7 +9,19 @@ This folder is set up for local data exploration and a serial baseline before mo
 - `comp90024_a1/reporting.py`: terminal output and JSON summary helpers
 - `inspect_data.py`: local inspection helper for exploratory work
 - `serial_language_counter.py`: compatibility wrapper that calls `main.py`
+- `RUN_RECORD_RULES.md`: authoritative rules for formal run recording and report use
 - `results/`: saved local outputs for the `small` and `medium` runs
+
+## Run Records First
+
+Before doing any formal run, read `RUN_RECORD_RULES.md`.
+
+That file defines:
+
+- which command counts as a formal run
+- how labels should be named
+- which files are authoritative for report writing
+- how humans and agents should retrieve prior run records
 
 ## 1. Activate the virtual environment
 
@@ -51,30 +63,37 @@ Run one Mastodon file and one BlueSky file in a single program invocation:
 
 ```bash
 python main.py \
-  --label small \
+  --label small_serial_v1 \
   --mastodon mastodon-small.ndjson \
   --bluesky bluesky-small.ndjson \
-  --output-json results/small_serial_summary.json
+  --output-dir results
 ```
 
 Run the medium files:
 
 ```bash
 python main.py \
-  --label medium \
+  --label medium_serial_v1 \
   --mastodon mastodon-medium.ndjson \
   --bluesky bluesky-medium.ndjson \
-  --output-json results/medium_serial_summary.json
+  --output-dir results
 ```
 
-If you already used the old command, `serial_language_counter.py` still works as a wrapper.
+For formal runs, `main.py` now saves all three artifacts automatically:
 
-Current local runs already saved these files:
+- `results/<label>_output.txt`
+- `results/<label>_summary.json`
+- `results/run_log.jsonl`
 
-- `results/small_serial_output.txt`
-- `results/small_serial_summary.json`
-- `results/medium_serial_output.txt`
-- `results/medium_serial_summary.json`
+If you already used the old command, `serial_language_counter.py` still works as a wrapper, but `main.py` is the preferred formal entry.
+
+Current authoritative local runs already saved these files:
+
+- `results/small_serial_v1_output.txt`
+- `results/small_serial_v1_summary.json`
+- `results/medium_serial_v1_output.txt`
+- `results/medium_serial_v1_summary.json`
+- `results/run_log.jsonl`
 
 ## 5. What the baseline reports
 
@@ -83,6 +102,7 @@ Current local runs already saved these files:
 - Skipped records and skip reasons
 - Detected language field paths
 - Language value types such as `str` or `list`
+- Explicit run metadata and configuration
 - Full language frequency table
 - Suspicious non-standard codes kept in raw form
 
@@ -113,4 +133,4 @@ These are preliminary observations only and are based on the local `small` and `
 
 ## 7. Suggested next step
 
-Use these local baseline results as the reference point for the actual assignment program, then move the reusable parsing logic into a cleaner serial script that can later be adapted for MPI and SLURM.
+Use these formal local run records as the reference point for the actual assignment program, then move the same structure toward MPI and SLURM on SPARTAN.

@@ -58,6 +58,14 @@ This file keeps a short human-agent decision log for the COMP90024 assignment wo
 - Evidence: The project now has `main.py` as the formal serial entry, `comp90024_a1/analysis.py` for counting, and `comp90024_a1/reporting.py` for output and JSON serialization.
 - Next Step: Keep using `main.py` as the reference serial program before adding parallel execution.
 
+## Entry 008
+
+- Date: 2026-04-16
+- Decision: Make run metadata and usage rules explicit through automatic JSONL logging and a dedicated `RUN_RECORD_RULES.md` file.
+- Reason: One teammate will later write the report, and both humans and agents need a stable way to recover timing results, run configurations, and authoritative output files.
+- Evidence: `main.py` now records timing, command, working directory, Python version, local serial resource settings, input file sizes, and artifact paths, and appends each formal run to `results/run_log.jsonl`.
+- Next Step: Use labeled formal runs such as `small_serial_v1` and `medium_serial_v1` as the current report-ready local baseline.
+
 ## Template
 
 - Date:

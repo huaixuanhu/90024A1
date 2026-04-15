@@ -4,10 +4,14 @@ from __future__ import annotations
 
 import json
 import re
+import socket
+import sys
 import time
 from collections import Counter
 from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
+from platform import platform
 from typing import Any
 
 
@@ -51,7 +55,22 @@ class RunSummary:
     label: str
     mastodon_path: Path
     bluesky_path: Path
+    mastodon_size_bytes: int
+    bluesky_size_bytes: int
+    run_started_at: str
+    run_finished_at: str
     elapsed_seconds: float
+    entry_script: str
+    command: str
+    cwd: str
+    mode: str
+    nodes: int
+    processes: int
+    cpus_per_process: int
+    python_version: str
+    python_executable: str
+    hostname: str
+    platform_name: str
     mastodon: FileSummary
     bluesky: FileSummary
 
@@ -174,18 +193,41 @@ def inspect_file(path: Path, limit: int | None = None) -> FileSummary:
     return summary
 
 
-def run_serial_pair(mastodon_path: Path, bluesky_path: Path, label: str) -> RunSummary:
+def run_serial_pair(
+    mastodon_path: Path,
+    bluesky_path: Path,
+    label: str,
+    entry_script: str,
+    command: str,
+    cwd: str,
+) -> RunSummary:
+    started_at = datetime.now().astimezone()
     start = time.perf_counter()
     mastodon_summary = inspect_file(mastodon_path)
     bluesky_summary = inspect_file(bluesky_path)
     elapsed_seconds = time.perf_counter() - start
+    finished_at = datetime.now().astimezone()
 
     return RunSummary(
         label=label,
         mastodon_path=mastodon_path,
         bluesky_path=bluesky_path,
+        mastodon_size_bytes=mastodon_path.stat().st_size,
+        bluesky_size_bytes=bluesky_path.stat().st_size,
+        run_started_at=started_at.isoformat(timespec="milliseconds"),
+        run_finished_at=finished_at.isoformat(timespec="milliseconds"),
         elapsed_seconds=elapsed_seconds,
+        entry_script=entry_script,
+        command=command,
+        cwd=cwd,
+        mode="serial",
+        nodes=1,
+        processes=1,
+        cpus_per_process=1,
+        python_version=sys.version.split()[0],
+        python_executable=sys.executable,
+        hostname=socket.gethostname(),
+        platform_name=platform(),
         mastodon=mastodon_summary,
         bluesky=bluesky_summary,
     )
-
