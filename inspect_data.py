@@ -238,6 +238,24 @@ def print_summary(summary: FileSummary, top_n: int | None = None) -> None:
     print()
 
 
+def summary_to_dict(summary: FileSummary, top_n: int | None = None) -> dict[str, Any]:
+    return {
+        "path": str(summary.path),
+        "dataset_type": summary.dataset_type,
+        "total_lines": summary.total_lines,
+        "parsed_json_lines": summary.parsed_json_lines,
+        "skipped_records": summary.skipped_records,
+        "counted_records": summary.counted_records,
+        "counted_language_assignments": summary.counted_language_assignments,
+        "invalid_json": summary.invalid_json,
+        "language_path_hits": dict(summary.language_path_hits),
+        "language_value_types": dict(summary.language_value_types),
+        "skip_reasons": dict(summary.skip_reasons),
+        "language_counts": dict(sorted_counts(summary.language_counts, top_n=top_n)),
+        "suspicious_codes": dict(summary.suspicious_codes),
+    }
+
+
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()

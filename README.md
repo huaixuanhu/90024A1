@@ -36,7 +36,36 @@ Inspect only the first 200 lines of the small files:
 python inspect_data.py --limit 200 mastodon-small.ndjson bluesky-small.ndjson
 ```
 
-## 4. What the baseline reports
+## 4. Run the assignment-style serial single program
+
+Run one Mastodon file and one BlueSky file in a single program invocation:
+
+```bash
+python serial_language_counter.py \
+  --label small \
+  --mastodon mastodon-small.ndjson \
+  --bluesky bluesky-small.ndjson \
+  --output-json results/small_serial_summary.json
+```
+
+Run the medium files:
+
+```bash
+python serial_language_counter.py \
+  --label medium \
+  --mastodon mastodon-medium.ndjson \
+  --bluesky bluesky-medium.ndjson \
+  --output-json results/medium_serial_summary.json
+```
+
+Current local runs already saved these files:
+
+- `results/small_serial_output.txt`
+- `results/small_serial_summary.json`
+- `results/medium_serial_output.txt`
+- `results/medium_serial_summary.json`
+
+## 5. What the baseline reports
 
 - Total lines
 - Successfully parsed JSON records
@@ -46,7 +75,7 @@ python inspect_data.py --limit 200 mastodon-small.ndjson bluesky-small.ndjson
 - Full language frequency table
 - Suspicious non-standard codes kept in raw form
 
-## 5. Current local observations
+## 6. Current local observations
 
 - `mastodon` currently stores the language value under `doc.language`
 - `bluesky` currently stores language values under `record.langs`
@@ -71,6 +100,6 @@ Current observations from local exploration:
 These are preliminary observations only and are based on the local `small` and `medium` files, not the final `large` files on SPARTAN.
 
 
-## 6. Suggested next step
+## 7. Suggested next step
 
 Use these local baseline results as the reference point for the actual assignment program, then move the reusable parsing logic into a cleaner serial script that can later be adapted for MPI and SLURM.

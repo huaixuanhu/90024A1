@@ -42,6 +42,14 @@ This file keeps a short human-agent decision log for the COMP90024 assignment wo
 - Evidence: The full local runs on `small` and `medium` completed without invalid JSON, while still surfacing a small set of suspicious non-standard codes.
 - Next Step: Use these baseline results as the reference point for the next serial assignment program.
 
+## Entry 006
+
+- Date: 2026-04-15
+- Decision: Add `serial_language_counter.py` as the local assignment-style single-program entry point.
+- Reason: The assignment requires one program to process both Mastodon and BlueSky, so the local workflow now needs a paired-input serial script instead of only per-file inspection utilities.
+- Evidence: The script now runs one Mastodon file and one BlueSky file together, measures elapsed time, prints both result tables, and saves JSON summaries for `small` and `medium`.
+- Next Step: Reuse this serial structure when moving toward the final assignment program and later MPI adaptation.
+
 ## Template
 
 - Date:

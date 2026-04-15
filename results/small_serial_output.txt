@@ -1,0 +1,77 @@
+########################################################################
+Run label: small
+Mastodon input: mastodon-small.ndjson
+BlueSky input: bluesky-small.ndjson
+Elapsed seconds: 0.023445
+Language table mode: full
+########################################################################
+
+========================================================================
+File: mastodon-small.ndjson
+Dataset type: mastodon
+Total lines: 1061
+Successfully parsed JSON: 1061
+Skipped records: 42
+Counted records: 1019
+Counted language assignments: 1019
+Invalid JSON lines: 0
+Detected language paths: {'doc.language': 1061}
+Language value types: {'None': 42, 'str': 1019}
+Skip reasons:
+  Rank  Code/Reason        Count
+     1  missing_value       42
+Language frequency table:
+  Rank  Code/Reason        Count
+     1  en                 875
+     2  es                  50
+     3  de                  39
+     4  zh                  16
+     5  fr                   9
+     6  nl                   8
+     7  zh-cn                4
+     8  pt                   3
+     9  it                   3
+    10  ru                   2
+    11  ja                   2
+    12  sv                   2
+    13  fi                   2
+    14  uk                   1
+    15  tr                   1
+    16  nb                   1
+    17  da                   1
+Suspicious non-standard codes:
+  Rank  Code/Reason        Count
+     1  zh-cn                4
+
+========================================================================
+File: bluesky-small.ndjson
+Dataset type: bluesky
+Total lines: 941
+Successfully parsed JSON: 941
+Skipped records: 27
+Counted records: 914
+Counted language assignments: 917
+Invalid JSON lines: 0
+Detected language paths: {'record.langs': 917}
+Language value types: {'list': 917, 'None': 24}
+Skip reasons:
+  Rank  Code/Reason        Count
+     1  missing_value       24
+     2  empty_list           3
+Language frequency table:
+  Rank  Code/Reason        Count
+     1  en                 867
+     2  de                  22
+     3  ja                   9
+     4  fr                   6
+     5  es                   5
+     6  pl                   2
+     7  pt                   2
+     8  sv                   1
+     9  is                   1
+    10  fi                   1
+    11  ca                   1
+Suspicious non-standard codes:
+  None detected
+
+Saved JSON summary to: results/small_serial_summary.json
