@@ -1,6 +1,6 @@
-# COMP90024 Assignment 1 Local Setup
+# COMP90024 Assignment 1 Workspace
 
-This folder is set up for local data exploration, the serial baseline, and the first MPI-ready version before moving the full benchmark workflow to SPARTAN.
+This folder now contains the local exploration workflow, the serial baseline, the MPI implementation, and the synchronized Spartan benchmark records for the assignment.
 
 ## Project structure
 
@@ -12,8 +12,9 @@ This folder is set up for local data exploration, the serial baseline, and the f
 - `serial_language_counter.py`: compatibility wrapper that calls `main.py`
 - `RUN_RECORD_RULES.md`: authoritative rules for formal run recording and report use
 - `BENCHMARK_SUMMARY.md`: fuller summary of the current local and Spartan serial benchmark records
+- `REPORT_READY_TABLES.md`: report-oriented tables and wording based on the formal large benchmark runs
 - `spartan/`: prepared SLURM scripts for serial and MPI runs on Spartan
-- `results/`: saved local outputs for the `small` and `medium` runs
+- `results/`: saved local outputs together with synchronized Spartan serial and MPI artifacts
 
 ## Run Records First
 
@@ -110,6 +111,8 @@ Use `BENCHMARK_SUMMARY.md` as the first quick reference when you need:
 
 The authoritative machine-readable records are still the JSON summary files in `results/` and the combined `results/run_log.jsonl`.
 
+For report drafting, `REPORT_READY_TABLES.md` is the most direct summary file.
+
 ## 6. What the baseline reports
 
 - Total lines
@@ -162,6 +165,8 @@ srun python3 mpi_main.py \
 
 The MPI program uses one combined run to process both files and splits each NDJSON file by byte range across ranks before merging the partial summaries on rank 0.
 
+This MPI path has already been validated on Spartan with the `small` and `medium` datasets, and the final `large` benchmarks have also been completed.
+
 ## 9. Prepared Spartan scripts
 
 Prepared job scripts:
@@ -173,11 +178,21 @@ Prepared job scripts:
 Example usage on Spartan:
 
 ```bash
-sbatch spartan/slurm_serial_1node_1core.sh spartan_large_serial_v3
-sbatch spartan/slurm_mpi_1node_8cores.sh large_mpi_1node8cores_v1
-sbatch spartan/slurm_mpi_2nodes_8cores.sh large_mpi_2nodes8cores_v1
+sbatch spartan/slurm_serial_1node_1core.sh spartan_large_serial_v2
+sbatch spartan/slurm_mpi_1node_8cores.sh spartan_large_mpi_1node8cores_v1
+sbatch spartan/slurm_mpi_2nodes_8cores.sh spartan_large_mpi_2nodes8cores_v1
 ```
 
-## 10. Suggested next step
+## 10. Current benchmark status
 
-Use the serial baseline records as the reference point for the assignment benchmarks, then run the MPI version on Spartan for the `1 node, 8 cores` and `2 nodes, 8 cores` configurations required by the PDF.
+The three formal large benchmark configurations required by the assignment are now available locally:
+
+- `spartan_large_serial_v2`
+- `spartan_large_mpi_1node8cores_v1`
+- `spartan_large_mpi_2nodes8cores_v1`
+
+Use these files for report writing:
+
+- `REPORT_READY_TABLES.md`
+- `BENCHMARK_SUMMARY.md`
+- `results/run_log.jsonl`
