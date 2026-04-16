@@ -66,6 +66,30 @@ This file keeps a short human-agent decision log for the COMP90024 assignment wo
 - Evidence: `main.py` now records timing, command, working directory, Python version, local serial resource settings, input file sizes, and artifact paths, and appends each formal run to `results/run_log.jsonl`.
 - Next Step: Use labeled formal runs such as `small_serial_v1` and `medium_serial_v1` as the current report-ready local baseline.
 
+## Entry 009
+
+- Date: 2026-04-16
+- Decision: Synchronize the successful Spartan serial baseline results back into the local repository and maintain a fuller benchmark summary file.
+- Reason: The report will need the exact Spartan timings, configuration details, and artifact paths later, so the local repository should keep a clean copy of the current authoritative serial baseline.
+- Evidence: The local `results/` folder now includes `spartan_small_serial_v3`, `spartan_medium_serial_v3`, and `spartan_large_serial_v2`, and `BENCHMARK_SUMMARY.md` consolidates their run labels, timings, configurations, and result highlights.
+- Next Step: Use the synchronized Spartan serial baseline as the reference point for MPI benchmarking.
+
+## Entry 010
+
+- Date: 2026-04-16
+- Decision: Implement the first MPI version by reusing the shared counting logic and splitting each NDJSON file by byte range across MPI ranks.
+- Reason: This keeps one program handling both Mastodon and BlueSky while avoiding a second, unrelated parsing code path, and it gives a practical first benchmarkable MPI design for Spartan.
+- Evidence: The new `mpi_main.py` and `comp90024_a1/mpi_cli.py` use the shared analysis layer, load-balanced byte ranges, and root-rank aggregation to produce the same style of saved outputs as the serial program.
+- Next Step: Validate the MPI version on Spartan with `small` or `medium`, then run the required `1 node 8 cores` and `2 nodes 8 cores` large-file benchmarks.
+
+## Entry 011
+
+- Date: 2026-04-16
+- Decision: Validate the MPI implementation on Spartan with `small` and `medium` before launching the large MPI benchmarks.
+- Reason: The assignment expects large-file benchmarking on shared HPC resources, so it is safer to confirm correctness and multi-node execution on cheaper test runs first.
+- Evidence: `spartan_small_mpi_1node8cores_v1`, `spartan_small_mpi_2nodes8cores_v1`, and `spartan_medium_mpi_1node8cores_v1` all completed successfully on Spartan, and their counted records and language tables match the serial baseline.
+- Next Step: Use the validated MPI path to launch the final large-file MPI benchmarks for `1 node 8 cores` and `2 nodes 8 cores`.
+
 ## Template
 
 - Date:

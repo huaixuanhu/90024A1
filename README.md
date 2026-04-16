@@ -1,15 +1,18 @@
 # COMP90024 Assignment 1 Local Setup
 
-This folder is set up for local data exploration and a serial baseline before moving the final program to SPARTAN.
+This folder is set up for local data exploration, the serial baseline, and the first MPI-ready version before moving the full benchmark workflow to SPARTAN.
 
 ## Project structure
 
 - `main.py`: the current assignment-style serial single-program entry
+- `mpi_main.py`: the MPI entry that still processes Mastodon and BlueSky in one program
 - `comp90024_a1/analysis.py`: shared language extraction and counting logic
 - `comp90024_a1/reporting.py`: terminal output and JSON summary helpers
 - `inspect_data.py`: local inspection helper for exploratory work
 - `serial_language_counter.py`: compatibility wrapper that calls `main.py`
 - `RUN_RECORD_RULES.md`: authoritative rules for formal run recording and report use
+- `BENCHMARK_SUMMARY.md`: fuller summary of the current local and Spartan serial benchmark records
+- `spartan/`: prepared SLURM scripts for serial and MPI runs on Spartan
 - `results/`: saved local outputs for the `small` and `medium` runs
 
 ## Run Records First
@@ -95,7 +98,19 @@ Current authoritative local runs already saved these files:
 - `results/medium_serial_v1_summary.json`
 - `results/run_log.jsonl`
 
-## 5. What the baseline reports
+## 5. Benchmark summary helper
+
+Use `BENCHMARK_SUMMARY.md` as the first quick reference when you need:
+
+- exact elapsed times
+- formal run labels
+- input sizes
+- artifact paths
+- top language counts and skip totals
+
+The authoritative machine-readable records are still the JSON summary files in `results/` and the combined `results/run_log.jsonl`.
+
+## 6. What the baseline reports
 
 - Total lines
 - Successfully parsed JSON records
@@ -106,7 +121,7 @@ Current authoritative local runs already saved these files:
 - Full language frequency table
 - Suspicious non-standard codes kept in raw form
 
-## 6. Current local observations
+## 7. Current local observations
 
 - `mastodon` currently stores the language value under `doc.language`
 - `bluesky` currently stores language values under `record.langs`
@@ -131,6 +146,38 @@ Current observations from local exploration:
 These are preliminary observations only and are based on the local `small` and `medium` files, not the final `large` files on SPARTAN.
 
 
-## 7. Suggested next step
+## 8. MPI program
 
-Use these formal local run records as the reference point for the actual assignment program, then move the same structure toward MPI and SLURM on SPARTAN.
+The project now includes an MPI entry for Spartan:
+
+```bash
+module load GCC/13.3.0 OpenMPI/5.0.3 mpi4py/4.0.1
+
+srun python3 mpi_main.py \
+  --mastodon mastodon-medium.ndjson \
+  --bluesky bluesky-medium.ndjson \
+  --label medium_mpi_dev_v1 \
+  --output-dir results
+```
+
+The MPI program uses one combined run to process both files and splits each NDJSON file by byte range across ranks before merging the partial summaries on rank 0.
+
+## 9. Prepared Spartan scripts
+
+Prepared job scripts:
+
+- `spartan/slurm_serial_1node_1core.sh`
+- `spartan/slurm_mpi_1node_8cores.sh`
+- `spartan/slurm_mpi_2nodes_8cores.sh`
+
+Example usage on Spartan:
+
+```bash
+sbatch spartan/slurm_serial_1node_1core.sh spartan_large_serial_v3
+sbatch spartan/slurm_mpi_1node_8cores.sh large_mpi_1node8cores_v1
+sbatch spartan/slurm_mpi_2nodes_8cores.sh large_mpi_2nodes8cores_v1
+```
+
+## 10. Suggested next step
+
+Use the serial baseline records as the reference point for the assignment benchmarks, then run the MPI version on Spartan for the `1 node, 8 cores` and `2 nodes, 8 cores` configurations required by the PDF.

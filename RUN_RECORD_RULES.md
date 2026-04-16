@@ -8,11 +8,11 @@ These rules exist so that:
 
 - one teammate can run the program and another teammate can write the report later
 - humans and agents can both find the correct timing and configuration records
-- local serial runs stay traceable before the project moves to SPARTAN and MPI
+- local and Spartan benchmark runs stay traceable as the project moves toward MPI
 
 ## 2. Authoritative Files
 
-For any formal local run, treat the following files as authoritative:
+For any formal run, treat the following files as authoritative:
 
 - `results/<label>_output.txt`
 - `results/<label>_summary.json`
@@ -22,11 +22,13 @@ Do not treat notebook output or terminal scrollback as the final record.
 
 ## 3. Formal Run Rules
 
-1. Use `main.py` for every formal local run.
+1. Use `main.py` for formal serial runs and `mpi_main.py` for formal MPI runs.
 2. Always provide an explicit `--label`.
 3. Use labels that are stable and descriptive, for example:
    - `small_serial_v1`
    - `medium_serial_v1`
+   - `spartan_large_serial_v2`
+   - `large_mpi_1node8cores_v1`
 4. Do not manually edit old JSON summaries or old `run_log.jsonl` entries.
 5. Every formal run must produce:
    - one text output file
@@ -55,7 +57,7 @@ Examples:
 
 ## 5. Standard Usage
 
-Activate the virtual environment first:
+Activate the virtual environment first for local runs:
 
 ```bash
 source .venv/bin/activate
@@ -79,6 +81,12 @@ python main.py \
   --mastodon mastodon-medium.ndjson \
   --bluesky bluesky-medium.ndjson \
   --output-dir results
+```
+
+On Spartan, serial and MPI runs should still save into the same `results/` directory, but MPI runs must first load the MPI modules:
+
+```bash
+module load GCC/13.3.0 OpenMPI/5.0.3 mpi4py/4.0.1
 ```
 
 ## 6. What Gets Recorded
@@ -135,9 +143,13 @@ When continuing work with an agent:
 
 ## 10. Current Scope
 
-These rules currently describe local serial runs only.
+These rules currently cover:
 
-Later, when the project moves to SPARTAN and MPI, extend the recorded fields instead of replacing them. Add fields such as:
+- local serial runs
+- Spartan serial runs
+- the prepared file layout for upcoming MPI benchmark runs
+
+When adding more formal MPI benchmark runs, extend the recorded fields instead of replacing them. Add fields such as:
 
 - `job_id`
 - `tasks`

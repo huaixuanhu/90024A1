@@ -1,0 +1,111 @@
+{
+  "label": "spartan_small_serial_v3",
+  "run_metadata": {
+    "entry_script": "main.py",
+    "command": "/usr/bin/python3 main.py --mastodon mastodon-small.ndjson --bluesky bluesky-small.ndjson --label spartan_small_serial_v3 --output-dir results",
+    "cwd": "/home/huaixuanh/90024A1",
+    "run_started_at": "2026-04-16T02:12:46.672+10:00",
+    "run_finished_at": "2026-04-16T02:12:46.726+10:00",
+    "elapsed_seconds": 0.053888,
+    "top_n_display": null,
+    "mode": "serial",
+    "nodes": 1,
+    "processes": 1,
+    "cpus_per_process": 1,
+    "python_version": "3.9.21",
+    "python_executable": "/usr/bin/python3",
+    "hostname": "spartan-bm028.hpc.unimelb.edu.au",
+    "platform": "Linux-5.14.0-570.30.1.el9_6.x86_64-x86_64-with-glibc2.34"
+  },
+  "elapsed_seconds": 0.053888,
+  "inputs": {
+    "mastodon": "mastodon-small.ndjson",
+    "bluesky": "bluesky-small.ndjson",
+    "mastodon_size_bytes": 4136412,
+    "bluesky_size_bytes": 1550329
+  },
+  "results": {
+    "mastodon": {
+      "path": "mastodon-small.ndjson",
+      "dataset_type": "mastodon",
+      "total_lines": 1061,
+      "parsed_json_lines": 1061,
+      "skipped_records": 42,
+      "counted_records": 1019,
+      "counted_language_assignments": 1019,
+      "invalid_json": 0,
+      "language_path_hits": {
+        "doc.language": 1061
+      },
+      "language_value_types": {
+        "None": 42,
+        "str": 1019
+      },
+      "skip_reasons": {
+        "missing_value": 42
+      },
+      "language_counts": {
+        "en": 875,
+        "es": 50,
+        "de": 39,
+        "zh": 16,
+        "fr": 9,
+        "nl": 8,
+        "zh-cn": 4,
+        "pt": 3,
+        "it": 3,
+        "ru": 2,
+        "ja": 2,
+        "sv": 2,
+        "fi": 2,
+        "uk": 1,
+        "tr": 1,
+        "nb": 1,
+        "da": 1
+      },
+      "suspicious_codes": {
+        "zh-cn": 4
+      }
+    },
+    "bluesky": {
+      "path": "bluesky-small.ndjson",
+      "dataset_type": "bluesky",
+      "total_lines": 941,
+      "parsed_json_lines": 941,
+      "skipped_records": 27,
+      "counted_records": 914,
+      "counted_language_assignments": 917,
+      "invalid_json": 0,
+      "language_path_hits": {
+        "record.langs": 917
+      },
+      "language_value_types": {
+        "list": 917,
+        "None": 24
+      },
+      "skip_reasons": {
+        "missing_value": 24,
+        "empty_list": 3
+      },
+      "language_counts": {
+        "en": 867,
+        "de": 22,
+        "ja": 9,
+        "fr": 6,
+        "es": 5,
+        "pl": 2,
+        "pt": 2,
+        "sv": 1,
+        "is": 1,
+        "fi": 1,
+        "ca": 1
+      },
+      "suspicious_codes": {}
+    }
+  },
+  "artifacts": {
+    "text_output_path": "results/spartan_small_serial_v3_output.txt",
+    "summary_json_path": "results/spartan_small_serial_v3_summary.json",
+    "run_log_path": "results/run_log.jsonl"
+  }
+}

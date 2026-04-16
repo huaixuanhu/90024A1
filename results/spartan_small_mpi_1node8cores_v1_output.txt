@@ -1,0 +1,91 @@
+########################################################################
+Run label: spartan_small_mpi_1node8cores_v1
+Entry script: mpi_main.py
+Command: /apps/easybuild-2022/easybuild/software/Compiler/GCCcore/13.3.0/Python/3.12.3/bin/python3 mpi_main.py --mastodon mastodon-small.ndjson --bluesky bluesky-small.ndjson --label spartan_small_mpi_1node8cores_v1 --output-dir results
+Working directory: /home/huaixuanh/90024A1
+Run started at: 2026-04-16T15:21:27.678+10:00
+Run finished at: 2026-04-16T15:21:27.686+10:00
+Elapsed seconds: 0.007840
+Mode: mpi
+Nodes: 1
+Processes: 8
+CPUs per process: 1
+Python version: 3.12.3
+Python executable: /apps/easybuild-2022/easybuild/software/Compiler/GCCcore/13.3.0/Python/3.12.3/bin/python3
+Hostname: spartan-bm153.hpc.unimelb.edu.au
+Platform: Linux-5.14.0-570.30.1.el9_6.x86_64-x86_64-with-glibc2.34
+Mastodon input: mastodon-small.ndjson
+Mastodon size bytes: 4136412
+BlueSky input: bluesky-small.ndjson
+BlueSky size bytes: 1550329
+Language table mode: full
+########################################################################
+
+========================================================================
+File: mastodon-small.ndjson
+Dataset type: mastodon
+Total lines: 1061
+Successfully parsed JSON: 1061
+Skipped records: 42
+Counted records: 1019
+Counted language assignments: 1019
+Invalid JSON lines: 0
+Detected language paths: {'doc.language': 1061}
+Language value types: {'None': 42, 'str': 1019}
+Skip reasons:
+  Rank  Code/Reason        Count
+     1  missing_value       42
+Language frequency table:
+  Rank  Code/Reason        Count
+     1  en                 875
+     2  es                  50
+     3  de                  39
+     4  zh                  16
+     5  fr                   9
+     6  nl                   8
+     7  zh-cn                4
+     8  pt                   3
+     9  it                   3
+    10  ru                   2
+    11  ja                   2
+    12  sv                   2
+    13  fi                   2
+    14  uk                   1
+    15  tr                   1
+    16  nb                   1
+    17  da                   1
+Suspicious non-standard codes:
+  Rank  Code/Reason        Count
+     1  zh-cn                4
+
+========================================================================
+File: bluesky-small.ndjson
+Dataset type: bluesky
+Total lines: 941
+Successfully parsed JSON: 941
+Skipped records: 27
+Counted records: 914
+Counted language assignments: 917
+Invalid JSON lines: 0
+Detected language paths: {'record.langs': 917}
+Language value types: {'list': 917, 'None': 24}
+Skip reasons:
+  Rank  Code/Reason        Count
+     1  missing_value       24
+     2  empty_list           3
+Language frequency table:
+  Rank  Code/Reason        Count
+     1  en                 867
+     2  de                  22
+     3  ja                   9
+     4  fr                   6
+     5  es                   5
+     6  pl                   2
+     7  pt                   2
+     8  sv                   1
+     9  is                   1
+    10  fi                   1
+    11  ca                   1
+Suspicious non-standard codes:
+  None detected
+
