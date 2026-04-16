@@ -147,7 +147,7 @@ These rules currently cover:
 
 - local serial runs
 - Spartan serial runs
-- the prepared file layout for upcoming MPI benchmark runs
+- Spartan MPI validation and benchmark runs
 
 When adding more formal MPI benchmark runs, extend the recorded fields instead of replacing them. Add fields such as:
 

@@ -59,6 +59,23 @@ Artifacts:
 - `results/comp90024_mpi_1n8c_23992174.out`
 - `results/comp90024_mpi_2n8c_23992175.out`
 
+## Formal large MPI benchmark runs completed on Spartan
+
+These are the two remaining benchmark configurations required by the assignment PDF after the serial large baseline.
+
+| Label | Platform | Config | Start | Finish | Elapsed |
+| --- | --- | --- | --- | --- | --- |
+| `spartan_large_mpi_1node8cores_v1` | Spartan, Python 3.12.3, host `spartan-bm210` | 1 node, 8 processes, 1 CPU per process | 2026-04-16T17:41:29.378+10:00 | 2026-04-16T17:44:52.115+10:00 | 202.737180 s |
+| `spartan_large_mpi_2nodes8cores_v1` | Spartan, Python 3.12.3, hosts `spartan-bm074`, `spartan-bm210` | 2 nodes, 8 processes, 1 CPU per process | 2026-04-16T17:41:31.037+10:00 | 2026-04-16T17:44:52.022+10:00 | 200.984948 s |
+
+Artifacts:
+- `results/spartan_large_mpi_1node8cores_v1_output.txt`
+- `results/spartan_large_mpi_1node8cores_v1_summary.json`
+- `results/spartan_large_mpi_2nodes8cores_v1_output.txt`
+- `results/spartan_large_mpi_2nodes8cores_v1_summary.json`
+- `results/comp90024_mpi_1n8c_23996725.out`
+- `results/comp90024_mpi_2n8c_23996724.out`
+
 ## Dataset sizes used in the formal serial runs
 
 | Dataset pair | Mastodon bytes | BlueSky bytes |
@@ -119,8 +136,9 @@ Selected suspicious non-standard codes:
 - For the assignment's final benchmark comparison, the current serial baseline to cite on Spartan is `spartan_large_serial_v2`.
 - `small` and `medium` were also re-run successfully on Spartan so there is a clean verification path from laptop development to cluster execution.
 - The current MPI implementation has already been validated on Spartan against the `small` and `medium` datasets, and the result counts match the serial baseline for those datasets.
-- The local `results/run_log.jsonl` now contains both local serial runs and the synchronized Spartan serial runs.
+- The local `results/run_log.jsonl` now contains the current local serial runs, the Spartan serial baseline runs, and the formal MPI benchmark runs.
 - Earlier Spartan labels `spartan_small_serial_v1` and `spartan_medium_serial_v1` still exist remotely, but the cleaner current verification set is `v3` for `small` and `medium`, plus `v2` for `large`.
-- The large MPI benchmark runs required by the assignment are still pending. The remaining formal targets are:
-  - `large`, `1 node`, `8 cores`
-  - `large`, `2 nodes`, `8 cores` with `4 cores per node`
+- All three required large-file benchmark configurations are now available locally:
+  - `spartan_large_serial_v2`
+  - `spartan_large_mpi_1node8cores_v1`
+  - `spartan_large_mpi_2nodes8cores_v1`

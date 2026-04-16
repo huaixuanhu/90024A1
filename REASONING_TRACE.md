@@ -90,6 +90,14 @@ This file keeps a short human-agent decision log for the COMP90024 assignment wo
 - Evidence: `spartan_small_mpi_1node8cores_v1`, `spartan_small_mpi_2nodes8cores_v1`, and `spartan_medium_mpi_1node8cores_v1` all completed successfully on Spartan, and their counted records and language tables match the serial baseline.
 - Next Step: Use the validated MPI path to launch the final large-file MPI benchmarks for `1 node 8 cores` and `2 nodes 8 cores`.
 
+## Entry 012
+
+- Date: 2026-04-16
+- Decision: Run the final large-file MPI benchmarks with the validated MPI implementation and synchronize the resulting artifacts back into the local repository.
+- Reason: The assignment requires three benchmark configurations on the large files, and the local repository should contain the final report-ready timing and configuration records for all of them.
+- Evidence: `spartan_large_mpi_1node8cores_v1` and `spartan_large_mpi_2nodes8cores_v1` both completed successfully on Spartan, their results match the serial large baseline, and their summaries and stdout logs are now stored locally in `results/`.
+- Next Step: Use `BENCHMARK_SUMMARY.md` and `results/run_log.jsonl` as the main entry points for report writing and any final comparison analysis.
+
 ## Template
 
 - Date:
