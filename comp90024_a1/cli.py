@@ -20,7 +20,7 @@ from comp90024_a1.reporting import (
 
 LABEL_PATTERN = re.compile(r"[A-Za-z0-9_.-]+$")
 
-
+# The CLI is designed to be user-friendly and robust, with clear argument parsing, validation, and structured output management. It ensures that all outputs are saved in a consistent manner, and that the run summary is both human-readable and machine-readable for further analysis or reporting.
 def build_main_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
@@ -60,7 +60,7 @@ def build_main_parser() -> argparse.ArgumentParser:
     )
     return parser
 
-
+#main function
 def main() -> None:
     args = build_main_parser().parse_args()
     if not LABEL_PATTERN.fullmatch(args.label):

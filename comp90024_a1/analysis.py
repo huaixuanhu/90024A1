@@ -34,9 +34,9 @@ LANGUAGE_PATHS: dict[str, list[tuple[str, ...]]] = {
 
 STANDARD_CODE_PATTERN = re.compile(r"[a-z]{2,3}$")
 
-
+# Note: The FileSummary and RunSummary dataclasses are designed to be easily serializable to JSON for reporting purposes.
 @dataclass
-class FileSummary:
+class FileSummary: 
     path: Path
     dataset_type: str
     total_lines: int = 0
@@ -51,7 +51,7 @@ class FileSummary:
     language_counts: Counter[str] = field(default_factory=Counter)
     suspicious_codes: Counter[str] = field(default_factory=Counter)
 
-
+# The RunSummary dataclass captures metadata about the entire run, including file paths, sizes, timing, environment details, and the summaries of both datasets.
 @dataclass
 class RunSummary:
     label: str
@@ -76,7 +76,7 @@ class RunSummary:
     mastodon: FileSummary
     bluesky: FileSummary
 
-
+#read the file and extract the language code
 def default_paths() -> list[Path]:
     names = [
         "mastodon-small.ndjson",
@@ -86,7 +86,7 @@ def default_paths() -> list[Path]:
     ]
     return [Path(name) for name in names if Path(name).exists()]
 
-
+#robust
 def infer_dataset_type(path: Path) -> str:
     lowered = path.name.lower()
     if "mastodon" in lowered:
@@ -121,7 +121,7 @@ def normalize_code(value: Any) -> str | None:
     cleaned = value.strip().lower()
     return cleaned or None
 
-
+#record the reasons for skipping records like missing value or invalid json
 def extract_languages(value: Any) -> tuple[list[str], str | None]:
     if value is None:
         return [], "missing_value"
@@ -144,7 +144,7 @@ def extract_languages(value: Any) -> tuple[list[str], str | None]:
 
     return [], f"unexpected_type:{type(value).__name__}"
 
-
+# The core processing logic for a single file is encapsulated in the inspect_file function
 def process_json_line(summary: FileSummary, line: str) -> None:
     summary.total_lines += 1
 
@@ -177,7 +177,7 @@ def process_json_line(summary: FileSummary, line: str) -> None:
             summary.skip_reasons[skip_reason] += 1
         return
 
-    summary.counted_records += 1
+    summary.counted_records += 1 #make summary of the records that have been counted for language assignment
 
     for code in languages:
         summary.language_counts[code] += 1
@@ -267,7 +267,7 @@ def merge_file_summaries(partials: list[FileSummary]) -> FileSummary:
 
     return merged
 
-
+#build run summary to checking the time taken for the program
 def build_run_summary(
     *,
     label: str,
